@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: sender
+  namespace: rabbitmq
+
+spec:
+  selector:
+    matchLabels:
+      app: sender
+  template:
+    metadata:
+      labels:
+        app: sender
+    spec:
+      containers:
+        - name: sender
+          image: regmicmahesh/rabbitmq-send
+          env:
+            - name: RABBITMQ_HOST
+              value: rabbitmq-service

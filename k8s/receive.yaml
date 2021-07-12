@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: receive
+  namespace: rabbitmq
+
+spec:
+  selector:
+    matchLabels:
+      app: receive
+  template:
+    metadata:
+      labels:
+        app: receive
+    spec:
+      containers:
+        - name: receive
+          image: regmicmahesh/rabbitmq-receive
+          env:
+            - name: RABBITMQ_HOST
+              value: rabbitmq-service
+    
